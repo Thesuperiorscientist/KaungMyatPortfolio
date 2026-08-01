@@ -1,0 +1,1973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aung Kaung Myat · Software Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ============================================
+       NEUMORPHISM VARIABLES
+       ============================================ */
+    :root {
+      --bg: #1a1a1a;
+      --bg-light: #222222;
+      --bg-dark: #121212;
+      --text-primary: #e8e8e8;
+      --text-secondary: #a0a0a0;
+      --text-muted: #707070;
+      --shadow-light: #2a2a2a;
+      --shadow-dark: #0a0a0a;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --radius-full: 50px;
+      --max-width: 1100px;
+      --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    /* ============================================
+       RESET & BASE
+       ============================================ */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--text-muted);
+      border-radius: 10px;
+    }
+
+    /* ============================================
+       CONTAINER
+       ============================================ */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ============================================
+       ANIMATIONS
+       ============================================ */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in-up {
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+
+    .fade-in-up-delay-1 { animation-delay: 0.1s; }
+    .fade-in-up-delay-2 { animation-delay: 0.2s; }
+    .fade-in-up-delay-3 { animation-delay: 0.3s; }
+    .fade-in-up-delay-4 { animation-delay: 0.4s; }
+    .fade-in-up-delay-5 { animation-delay: 0.5s; }
+
+    .section-reveal {
+      opacity: 0;
+      transform: translateY(60px);
+      transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .section-reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================
+       TYPOGRAPHY
+       ============================================ */
+    .section-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      padding: 4px 16px;
+      border-radius: var(--radius-full);
+      background: var(--bg);
+      box-shadow: 
+        inset 2px 2px 4px var(--shadow-dark),
+        inset -2px -2px 4px var(--shadow-light);
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+      color: var(--text-primary);
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      line-height: 1.7;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    /* ============================================
+       BUTTONS - NEUMORPHISM
+       ============================================ */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--bg);
+      color: var(--text-primary);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      box-shadow: 
+        6px 6px 12px var(--shadow-dark),
+        -6px -6px 12px var(--shadow-light);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        8px 8px 16px var(--shadow-dark),
+        -8px -8px 16px var(--shadow-light);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0px);
+      box-shadow: 
+        inset 4px 4px 8px var(--shadow-dark),
+        inset -4px -4px 8px var(--shadow-light);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: transparent;
+      color: var(--text-secondary);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      font-size: 0.85rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      box-shadow: 
+        4px 4px 8px var(--shadow-dark),
+        -4px -4px 8px var(--shadow-light);
+    }
+
+    .btn-secondary:hover {
+      color: var(--text-primary);
+      transform: translateY(-3px);
+      box-shadow: 
+        6px 6px 12px var(--shadow-dark),
+        -6px -6px 12px var(--shadow-light);
+    }
+
+    /* ============================================
+       NAVIGATION - NEUMORPHISM
+       ============================================ */
+    nav {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 999;
+      width: 92%;
+      max-width: 1100px;
+      padding: 0 24px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        8px 8px 20px var(--shadow-dark),
+        -8px -8px 20px var(--shadow-light);
+      transition: var(--transition);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    nav.scrolled {
+      top: 8px;
+      box-shadow: 
+        10px 10px 24px var(--shadow-dark),
+        -10px -10px 24px var(--shadow-light);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 64px;
+    }
+
+    .logo {
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+      text-decoration: none;
+    }
+
+    .logo span {
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      transition: var(--transition);
+      padding: 6px 0;
+    }
+
+    .nav-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .nav-resume {
+      color: var(--text-primary) !important;
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: 
+        inset 3px 3px 6px var(--shadow-dark),
+        inset -3px -3px 6px var(--shadow-light);
+      font-size: 0.75rem !important;
+      transition: var(--transition);
+    }
+
+    .nav-resume:hover {
+      box-shadow: 
+        inset 2px 2px 4px var(--shadow-dark),
+        inset -2px -2px 4px var(--shadow-light);
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-primary);
+      transition: var(--transition);
+      border-radius: 2px;
+    }
+
+    /* Mobile Nav */
+    .mobile-nav {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 280px;
+      height: 100vh;
+      background: var(--bg);
+      z-index: 1000;
+      padding: 72px 28px;
+      transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 
+        -10px 0 30px rgba(0,0,0,0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .mobile-nav.active {
+      right: 0;
+    }
+
+    .mobile-nav .close-btn {
+      position: absolute;
+      top: 18px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: var(--transition);
+    }
+
+    .mobile-nav .close-btn:hover {
+      color: var(--text-primary);
+      transform: rotate(90deg);
+    }
+
+    .mobile-nav a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.03);
+      transition: var(--transition);
+    }
+
+    .mobile-nav a:hover {
+      color: var(--text-primary);
+      padding-left: 8px;
+    }
+
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 999;
+    }
+
+    .overlay.active {
+      display: block;
+    }
+
+    /* ============================================
+       HERO - NEUMORPHISM
+       ============================================ */
+    header {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 120px 0 60px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+      width: 100%;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding: 6px 20px;
+      border-radius: var(--radius-full);
+      background: var(--bg);
+      box-shadow: 
+        inset 3px 3px 6px var(--shadow-dark),
+        inset -3px -3px 6px var(--shadow-light);
+    }
+
+    .hero-content h1 {
+      font-size: 4.5rem;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1.05;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .hero-content h1 .highlight {
+      color: var(--text-muted);
+    }
+
+    .hero-role {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .hero-role span {
+      color: var(--text-muted);
+      margin: 0 6px;
+    }
+
+    .hero-description {
+      font-size: 1.05rem;
+      color: var(--text-secondary);
+      max-width: 520px;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* Profile Picture - Neumorphism with Pulse */
+    .hero-image {
+      flex-shrink: 0;
+    }
+
+    .profile-wrapper {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      background: var(--bg);
+      box-shadow: 
+        10px 10px 24px var(--shadow-dark),
+        -10px -10px 24px var(--shadow-light),
+        0 0 40px rgba(255, 255, 255, 0.02);
+      padding: 6px;
+      animation: profilePulse 4s ease-in-out infinite;
+    }
+
+    @keyframes profilePulse {
+      0%, 100% {
+        box-shadow: 
+          10px 10px 24px var(--shadow-dark),
+          -10px -10px 24px var(--shadow-light),
+          0 0 40px rgba(255, 255, 255, 0.02);
+      }
+      50% {
+        box-shadow: 
+          10px 10px 24px var(--shadow-dark),
+          -10px -10px 24px var(--shadow-light),
+          0 0 80px rgba(255, 255, 255, 0.05);
+      }
+    }
+
+    .profile-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      box-shadow: 
+        inset 6px 6px 12px var(--shadow-dark),
+        inset -6px -6px 12px var(--shadow-light);
+      pointer-events: none;
+    }
+
+    .profile-pic {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      transition: var(--transition);
+    }
+
+    .profile-pic:hover {
+      transform: scale(1.02);
+    }
+
+    /* ============================================
+       ABOUT ME SECTION - NEUMORPHISM
+       ============================================ */
+    .about-section {
+      padding: 72px 0;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+
+    .about-content {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .about-content p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .about-content .highlight-text {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 8px;
+    }
+
+    .about-stat {
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: 
+        4px 4px 8px var(--shadow-dark),
+        -4px -4px 8px var(--shadow-light);
+      text-align: center;
+      transition: var(--transition);
+    }
+
+    .about-stat:hover {
+      transform: translateY(-3px);
+      box-shadow: 
+        6px 6px 12px var(--shadow-dark),
+        -6px -6px 12px var(--shadow-light);
+    }
+
+    .about-stat .number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .about-stat .label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .about-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .about-image-wrapper {
+      width: 100%;
+      max-width: 360px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        10px 10px 24px var(--shadow-dark),
+        -10px -10px 24px var(--shadow-light);
+      padding: 12px;
+      transition: var(--transition);
+    }
+
+    .about-image-wrapper:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        14px 14px 32px var(--shadow-dark),
+        -14px -14px 32px var(--shadow-light);
+    }
+
+    .about-image-wrapper img {
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-sm);
+      display: block;
+    }
+
+    .about-image-placeholder {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: var(--radius-sm);
+      background: var(--bg-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      text-align: center;
+      padding: 32px;
+      box-shadow: 
+        inset 4px 4px 8px var(--shadow-dark),
+        inset -4px -4px 8px var(--shadow-light);
+    }
+
+    .about-image-placeholder i {
+      font-size: 3rem;
+      margin-bottom: 12px;
+      color: var(--text-muted);
+      opacity: 0.3;
+    }
+
+    /* ============================================
+       PROJECTS - NEUMORPHISM
+       ============================================ */
+    .projects-section {
+      padding: 72px 0;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    .project-card {
+      padding: 28px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        8px 8px 20px var(--shadow-dark),
+        -8px -8px 20px var(--shadow-light);
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 
+        12px 12px 28px var(--shadow-dark),
+        -12px -12px 28px var(--shadow-light);
+    }
+
+    .project-card:active {
+      transform: translateY(0px);
+      box-shadow: 
+        inset 6px 6px 12px var(--shadow-dark),
+        inset -6px -6px 12px var(--shadow-light);
+    }
+
+    .project-card .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .project-card .project-tags span {
+      font-size: 0.6rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: var(--bg);
+      color: var(--text-muted);
+      box-shadow: 
+        inset 2px 2px 4px var(--shadow-dark),
+        inset -2px -2px 4px var(--shadow-light);
+    }
+
+    .project-card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--text-primary);
+    }
+
+    .project-card .project-desc {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      line-height: 1.6;
+    }
+
+    .project-card .read-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 20px;
+      background: transparent;
+      color: var(--text-secondary);
+      border: none;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      font-size: 0.8rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 
+        4px 4px 8px var(--shadow-dark),
+        -4px -4px 8px var(--shadow-light);
+    }
+
+    .project-card .read-more-btn:hover {
+      color: var(--text-primary);
+      transform: translateX(4px);
+      box-shadow: 
+        6px 6px 12px var(--shadow-dark),
+        -6px -6px 12px var(--shadow-light);
+    }
+
+    /* ============================================
+       EXPERIENCE - NEUMORPHISM
+       ============================================ */
+    .exp-section {
+      padding: 72px 0;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .exp-column h3 {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .exp-item {
+      margin-bottom: 28px;
+      padding: 20px 24px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        4px 4px 12px var(--shadow-dark),
+        -4px -4px 12px var(--shadow-light);
+      transition: var(--transition);
+    }
+
+    .exp-item:hover {
+      transform: translateX(6px);
+      box-shadow: 
+        6px 6px 16px var(--shadow-dark),
+        -6px -6px 16px var(--shadow-light);
+    }
+
+    .exp-item .title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--text-primary);
+    }
+
+    .exp-item .org {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      display: block;
+    }
+
+    .exp-item .date {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      display: block;
+      margin: 2px 0 8px;
+    }
+
+    .exp-item ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+    }
+
+    .exp-item ul li {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      padding: 2px 0;
+      padding-left: 16px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    .exp-item ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    /* ============================================
+       PUBLICATIONS - NEUMORPHISM
+       ============================================ */
+    .publications-section {
+      padding: 72px 0;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .pub-item {
+      padding: 24px 28px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        8px 8px 20px var(--shadow-dark),
+        -8px -8px 20px var(--shadow-light);
+      transition: var(--transition);
+    }
+
+    .pub-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        12px 12px 28px var(--shadow-dark),
+        -12px -12px 28px var(--shadow-light);
+    }
+
+    .pub-item .pub-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+    }
+
+    .pub-item .pub-meta {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      margin: 4px 0 8px;
+    }
+
+    .pub-item .pub-link {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: 
+        inset 2px 2px 4px var(--shadow-dark),
+        inset -2px -2px 4px var(--shadow-light);
+    }
+
+    .pub-item .pub-link:hover {
+      color: var(--text-primary);
+      gap: 10px;
+    }
+
+    /* ============================================
+       FOOTER - NEUMORPHISM
+       ============================================ */
+    footer {
+      padding: 48px 0 32px;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 24px;
+      padding: 32px 40px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        inset 4px 4px 12px var(--shadow-dark),
+        inset -4px -4px 12px var(--shadow-light);
+    }
+
+    .footer-left p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--text-primary);
+    }
+
+    .footer-bottom {
+      margin-top: 24px;
+      padding-top: 16px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 16px;
+    }
+
+    .footer-social a {
+      color: var(--text-muted);
+      font-size: 1rem;
+      transition: var(--transition);
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg);
+      box-shadow: 
+        3px 3px 6px var(--shadow-dark),
+        -3px -3px 6px var(--shadow-light);
+      text-decoration: none;
+    }
+
+    .footer-social a:hover {
+      color: var(--text-primary);
+      transform: translateY(-3px);
+      box-shadow: 
+        5px 5px 10px var(--shadow-dark),
+        -5px -5px 10px var(--shadow-light);
+    }
+
+    /* ============================================
+       PROJECT VAULT (Modal) - NEUMORPHISM
+       ============================================ */
+    #projectVault {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(26, 26, 26, 0.95);
+      backdrop-filter: blur(20px);
+      z-index: 9999;
+      overflow-y: auto;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    #projectVault.active {
+      opacity: 1;
+    }
+
+    .vault-content {
+      max-width: 720px;
+      margin: 60px auto;
+      padding: 48px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        20px 20px 60px var(--shadow-dark),
+        -20px -20px 60px var(--shadow-light);
+      transform: translateY(30px) scale(0.98);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    #projectVault.active .vault-content {
+      transform: translateY(0) scale(1);
+    }
+
+    .vault-content .close-btn {
+      float: right;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 4px;
+    }
+
+    .vault-content .close-btn:hover {
+      color: var(--text-primary);
+      transform: rotate(90deg);
+    }
+
+    .vault-content h2 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-primary);
+    }
+
+    .vault-content .vault-subtitle {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 16px;
+    }
+
+    .vault-content .vault-image {
+      width: 100%;
+      border-radius: var(--radius-sm);
+      margin: 16px 0 24px;
+    }
+
+    .vault-content .vault-text {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .vault-content .vault-text strong {
+      color: var(--text-primary);
+    }
+
+    .vault-content .vault-text ul {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0;
+    }
+
+    .vault-content .vault-text ul li {
+      padding: 2px 0;
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.7;
+    }
+
+    .vault-content .vault-text ul li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--text-muted);
+    }
+
+    .vault-content .vault-arch {
+      padding: 16px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: 
+        inset 4px 4px 8px var(--shadow-dark),
+        inset -4px -4px 8px var(--shadow-light);
+      font-family: 'Inter', monospace;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      line-height: 2.2;
+      margin: 12px 0 20px;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+
+    .vault-content .vault-arch .arrow {
+      color: var(--text-muted);
+      padding: 0 8px;
+    }
+
+    .vault-content .vault-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 16px 0 0;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .vault-content .vault-tags span {
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      background: var(--bg);
+      box-shadow: 
+        inset 2px 2px 4px var(--shadow-dark),
+        inset -2px -2px 4px var(--shadow-light);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .vault-content .vault-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .vault-content .vault-links a {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      border-radius: var(--radius-sm);
+      background: var(--bg);
+      box-shadow: 
+        3px 3px 6px var(--shadow-dark),
+        -3px -3px 6px var(--shadow-light);
+    }
+
+    .vault-content .vault-links a:hover {
+      color: var(--text-primary);
+      gap: 10px;
+    }
+
+    /* ============================================
+       RESPONSIVE
+       ============================================ */
+    @media (max-width: 1024px) {
+      .hero-content h1 {
+        font-size: 3.5rem;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .exp-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        text-align: center;
+      }
+      .about-stats {
+        justify-content: center;
+      }
+      .about-image-wrapper {
+        max-width: 280px;
+        margin: 0 auto;
+      }
+      .hero-wrapper {
+        flex-direction: column-reverse;
+        text-align: center;
+      }
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-description {
+        max-width: 100%;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
+      .profile-wrapper {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+      }
+
+      nav {
+        width: 96%;
+        padding: 0 16px;
+      }
+
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+
+      .section-title {
+        font-size: 1.8rem;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-stats {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+      }
+
+      .about-stat {
+        padding: 12px 16px;
+      }
+
+      .about-stat .number {
+        font-size: 1.2rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 24px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .vault-content {
+        margin: 20px 16px;
+        padding: 28px 20px;
+      }
+
+      .vault-content .vault-arch {
+        font-size: 0.7rem;
+        white-space: normal;
+        word-break: break-all;
+      }
+
+      header {
+        padding: 100px 0 40px;
+      }
+
+      .profile-wrapper {
+        width: 140px;
+        height: 140px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+      .hero-role {
+        font-size: 1rem;
+      }
+      .btn-primary, .btn-secondary {
+        width: 100%;
+        justify-content: center;
+      }
+      .hero-actions {
+        width: 100%;
+        flex-direction: column;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .project-card {
+        padding: 20px;
+      }
+      .about-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+      .profile-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================
+  3D WIREFRAME GLOBE BACKGROUND
+  ============================================ -->
+  <div id="globe-container"></div>
+
+  <!-- ============================================
+  NAVIGATION - NEUMORPHISM
+  ============================================ -->
+  <nav id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">Kaung<span>Myat</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact" class="nav-resume">Contact me</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============================================
+  MOBILE NAV
+  ============================================ -->
+  <div class="mobile-nav" id="mobileNav">
+    <button class="close-btn" id="closeNav">&times;</button>
+    <a href="#about" onclick="closeMobileNav()">About</a>
+    <a href="#projects" onclick="closeMobileNav()">Projects</a>
+    <a href="#experience" onclick="closeMobileNav()">Experience</a>
+    <a href="#publications" onclick="closeMobileNav()">Publications</a>
+    <a href="#contact" onclick="closeMobileNav()">Contact me</a>
+  </div>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- ============================================
+  HERO - NEUMORPHISM
+  ============================================ -->
+  <header>
+    <div class="container">
+      <div class="hero-wrapper">
+        <div class="hero-content fade-in-up">
+          <div class="hero-badge fade-in-up-delay-1">Available for Work</div>
+          <h1 class="fade-in-up-delay-2">Aung Kaung Myat</h1>
+          <p class="hero-role fade-in-up-delay-3">
+            Software Engineer <span>·</span> Data Engineer <span>·</span> MLOps
+          </p>
+          <p class="hero-description fade-in-up-delay-4">
+            Building scalable data pipelines, bioinformatics tools, and full-stack applications 
+            at the intersection of engineering and life sciences.
+          </p>
+          <div class="hero-actions fade-in-up-delay-5">
+            <a href="#projects" class="btn-primary">
+              <i class="fas fa-arrow-right"></i> View Projects
+            </a>
+            <a href="resume.pdf" class="btn-secondary">
+              <i class="fas fa-file-pdf"></i> Resume
+            </a>
+          </div>
+        </div>
+        <div class="hero-image fade-in-up-delay-3">
+          <div class="profile-wrapper">
+            <img src="./pf.jpg" alt="Kaung Myat" class="profile-pic" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================
+  ABOUT ME SECTION - NEUMORPHISM
+  ============================================ -->
+  <section class="about-section" id="about">
+    <div class="container">
+      <div class="section-header section-reveal">
+        <span class="section-tag">About Me</span>
+        <h2 class="section-title">Who I Am</h2>
+        <p class="section-subtitle">A brief overview of my journey and what drives me.</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-content section-reveal">
+          <p>
+            I'm <span class="highlight-text">Aung Kaung Myat</span>, a passionate 
+            <span class="highlight-text">Software Engineer</span> and 
+            <span class="highlight-text">Data Engineer</span> who loves building 
+            solutions at the intersection of technology and life sciences.
+          </p>
+          <p>
+            My journey began with a foundation in computing and has evolved into 
+            building <span class="highlight-text">scalable data pipelines</span>, 
+            <span class="highlight-text">bioinformatics tools</span>, and 
+            <span class="highlight-text">full-stack applications</span>. 
+            I believe in writing clean, maintainable code and designing systems 
+            that solve real-world problems.
+          </p>
+          <p>
+            Currently, I'm focused on <span class="highlight-text">MLOps</span>, 
+            <span class="highlight-text">genomic data processing</span>, and 
+            building <span class="highlight-text">cloud-native applications</span> 
+            that make a difference in healthcare and research.
+          </p>
+          <div class="about-stats">
+            <div class="about-stat">
+              <div class="number">3+</div>
+              <div class="label">Projects</div>
+            </div>
+            <div class="about-stat">
+              <div class="number">2+</div>
+              <div class="label">Years Experience</div>
+            </div>
+            <div class="about-stat">
+              <div class="number">10+</div>
+              <div class="label">Technologies</div>
+            </div>
+          </div>
+        </div>
+        <div class="about-image section-reveal">
+          <div class="about-image-wrapper">
+            <div class="about-image-placeholder">
+              <div>
+                <i class="fas fa-code"></i>
+                <p>Building the future,<br>one line at a time.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  PROJECTS - NEUMORPHISM
+  ============================================ -->
+  <section class="projects-section" id="projects">
+    <div class="container">
+      <div class="section-header section-reveal">
+        <span class="section-tag">Projects</span>
+        <h2 class="section-title">Featured Work</h2>
+        <p class="section-subtitle">End-to-end solutions built with modern engineering practices.</p>
+      </div>
+      <div class="projects-grid">
+        <div class="project-card section-reveal" data-project="redmane">
+          <div class="project-tags">
+            <span>Python</span>
+            <span>Nextflow</span>
+            <span>SAMtools</span>
+            <span>Bioinformatics</span>
+          </div>
+          <h3>REDMANE Workflow</h3>
+          <p class="project-desc">Synthetic multi-omics data pipeline with short-read variant calling (FASTQ → BAM → VCF).</p>
+          <button class="read-more-btn" data-project="redmane">
+            <i class="fas fa-chevron-right"></i> Case Study
+          </button>
+        </div>
+
+        <div class="project-card section-reveal" data-project="protinus">
+          <div class="project-tags">
+            <span>Python</span>
+            <span>Flask</span>
+            <span>NGL.js</span>
+            <span>3D</span>
+          </div>
+          <h3>Protinus</h3>
+          <p class="project-desc">Real-time web-based 3D visualization tool for protein structures.</p>
+          <button class="read-more-btn" data-project="protinus">
+            <i class="fas fa-chevron-right"></i> Case Study
+          </button>
+        </div>
+
+        <div class="project-card section-reveal" data-project="crim">
+          <div class="project-tags">
+            <span>PHP</span>
+            <span>MySQL</span>
+            <span>Chart.js</span>
+            <span>Analytics</span>
+          </div>
+          <h3>AIU | CRIM</h3>
+          <p class="project-desc">Research publication management system with analytics dashboard.</p>
+          <button class="read-more-btn" data-project="crim">
+            <i class="fas fa-chevron-right"></i> Case Study
+          </button>
+        </div>
+
+        <div class="project-card section-reveal" data-project="prosthetic">
+          <div class="project-tags">
+            <span>Robotics</span>
+            <span>EMG</span>
+            <span>Arduino</span>
+            <span>3D Printing</span>
+          </div>
+          <h3>EMG Prosthetic Hand</h3>
+          <p class="project-desc">Muscle-controllable robotic hand using EMG sensors and sustainable 3D printing.</p>
+          <button class="read-more-btn" data-project="prosthetic">
+            <i class="fas fa-chevron-right"></i> Case Study
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  EXPERIENCE & EDUCATION - NEUMORPHISM
+  ============================================ -->
+  <section class="exp-section" id="experience">
+    <div class="container">
+      <div class="section-header section-reveal">
+        <span class="section-tag">Background</span>
+        <h2 class="section-title">Experience & Education</h2>
+      </div>
+      <div class="exp-grid">
+        <div class="section-reveal">
+          <h3>Experience</h3>
+          <div class="exp-item">
+            <div class="title">Big Data Engineer Intern</div>
+            <span class="org">WEHI — RCP Melbourne</span>
+            <span class="date">2025</span>
+            <ul>
+              <li>Developed synthetic multi-omics data workflow (FASTQ → BAM → VCF)</li>
+              <li>Worked with Genome in a Bottle (GIAB) data for realistic datasets</li>
+              <li>Co-authored Fast Track Report on Zenodo (2026)</li>
+            </ul>
+          </div>
+          <div class="exp-item">
+            <div class="title">CAD Drafter</div>
+            <span class="org">Cad Crowd</span>
+            <span class="date">2021 – 2024</span>
+            <ul>
+              <li>Designed 3D CAD models based on client requirements</li>
+            </ul>
+          </div>
+          <div class="exp-item">
+            <div class="title">Vice President</div>
+            <span class="org">STEAM Club, AIU</span>
+            <span class="date">2024 – 2025</span>
+            <ul>
+              <li>Led event coordination across events</li>
+            </ul>
+          </div>
+        </div>
+        <div class="section-reveal">
+          <h3>Education</h3>
+          <div class="exp-item">
+            <div class="title">Foundation in Computing</div>
+            <span class="org">Albukhary International University</span>
+            <span class="date">2024 – 2025</span>
+            <ul>
+              <li>DBMS, C Programming, JavaScript, PHP, Server-side Development</li>
+            </ul>
+          </div>
+          <div class="exp-item">
+            <div class="title">Bachelor's in Computer Science (Hons)</div>
+            <span class="org">Albukhary International University</span>
+            <span class="date">2025 – Present</span>
+            <ul>
+              <li>Software Engineering, Machine Learning, Data Science</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  PUBLICATIONS - NEUMORPHISM
+  ============================================ -->
+  <section class="publications-section" id="publications">
+    <div class="container">
+      <div class="section-header section-reveal">
+        <span class="section-tag">Publications</span>
+        <h2 class="section-title">Research Output</h2>
+        <p class="section-subtitle">Contributions to computational biology and bioinformatics.</p>
+      </div>
+      <div class="pub-item section-reveal">
+        <div class="pub-title">Fast Track Report: WEHI RCP Internship Intake 15 — REDMANE Workflow Team</div>
+        <div class="pub-meta">Zenodo · March 2026 · v1</div>
+        <a href="https://zenodo.org/records/19081661" target="_blank" class="pub-link">
+          <i class="fas fa-external-link-alt"></i> View on Zenodo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  FOOTER - NEUMORPHISM
+  ============================================ -->
+  <footer id="contact">
+    <div class="container">
+      <div class="footer-content section-reveal">
+        <div class="footer-left">
+          <p>Interested in collaborating? Let's build something impactful.</p>
+        </div>
+        <div class="footer-links">
+          <a href="mailto:kaungmyataung1162004@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+          <a href="https://www.linkedin.com/in/kaungmyathatesjavascript/" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
+          <a href="resume.pdf"><i class="fas fa-file-pdf"></i> Resume</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Aung Kaung Myat. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ============================================
+  PROJECT VAULT (Modal)
+  ============================================ -->
+  <div id="projectVault">
+    <div class="vault-content">
+      <button class="close-btn" id="closeVault">&times;</button>
+      <div id="vaultContent"></div>
+    </div>
+  </div>
+
+  <!-- ============================================
+  THREE.JS - 3D WIREFRAME GLOBE
+  ============================================ -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script>
+    // ============================================
+    // 3D WIREFRAME GLOBE - Neumorphism Style
+    // ============================================
+    (function() {
+      const container = document.getElementById('globe-container');
+      container.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        pointer-events: none;
+        opacity: 0.06;
+      `;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 4.5;
+
+      const renderer = new THREE.WebGLRenderer({ 
+        antialias: true, 
+        alpha: true 
+      });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+      container.appendChild(renderer.domElement);
+
+      // Main Globe
+      const geometry = new THREE.SphereGeometry(1.8, 32, 24);
+      const material = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        wireframe: true,
+        transparent: true,
+        opacity: 0.4,
+      });
+      const globe = new THREE.Mesh(geometry, material);
+      scene.add(globe);
+
+      // Outer Ring 1
+      const ringGeo = new THREE.TorusGeometry(1.95, 0.008, 16, 100);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.2,
+      });
+      const ring = new THREE.Mesh(ringGeo, ringMat);
+      ring.rotation.x = Math.PI / 3;
+      scene.add(ring);
+
+      // Outer Ring 2
+      const ring2 = new THREE.Mesh(ringGeo, ringMat);
+      ring2.rotation.y = Math.PI / 2;
+      ring2.rotation.x = Math.PI / 4;
+      scene.add(ring2);
+
+      // Inner Ring
+      const innerRingGeo = new THREE.TorusGeometry(1.6, 0.005, 16, 100);
+      const innerRingMat = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.1,
+      });
+      const innerRing = new THREE.Mesh(innerRingGeo, innerRingMat);
+      innerRing.rotation.x = Math.PI / 2.5;
+      innerRing.rotation.z = 0.3;
+      scene.add(innerRing);
+
+      // Animation
+      let time = 0;
+      function animate() {
+        requestAnimationFrame(animate);
+        time += 0.01;
+        
+        globe.rotation.y += 0.002;
+        globe.rotation.x = Math.sin(time * 0.1) * 0.02;
+        
+        ring.rotation.y += 0.0015;
+        ring2.rotation.x += 0.001;
+        innerRing.rotation.z += 0.002;
+        
+        renderer.render(scene, camera);
+      }
+      animate();
+
+      // Resize handler
+      function onResize() {
+        const w = window.innerWidth;
+        const h = window.innerHeight;
+        camera.aspect = w / h;
+        camera.updateProjectionMatrix();
+        renderer.setSize(w, h);
+      }
+      window.addEventListener('resize', onResize);
+
+      // Re-run on orientation change
+      window.addEventListener('orientationchange', function() {
+        setTimeout(onResize, 300);
+      });
+    })();
+
+    // ============================================
+    // PROJECT DATA
+    // ============================================
+    const projectData = {
+      redmane: {
+        title: 'REDMANE Workflow',
+        subtitle: 'Synthetic multi-omics data pipeline with short-read variant calling',
+        image: '',
+        tags: ['Python', 'Nextflow', 'SAMtools', 'BCFtools', 'GIAB', 'Linux', 'Bash'],
+        architecture: 'FASTQ (Raw Data)\n    ↓\nAlignment (BWA)\n    ↓\nBAM (Processed)\n    ↓\nVariant Calling (BCFtools)\n    ↓\nVCF (Summarised)',
+        description: `
+          <p><strong>Project Context:</strong> Contributed to the development of a synthetic multi-omics data workflow within the REDMANE ecosystem at WEHI — RCP Melbourne.</p>
+          
+          <p><strong>Key Contributions:</strong></p>
+          <ul>
+            <li>Implemented a short-read variant calling pipeline, transforming raw sequencing data (FASTQ) into processed (BAM) and summarised (VCF) outputs using Linux-based bioinformatics tools.</li>
+            <li>Worked with Genome in a Bottle (GIAB) data to generate realistic genomic datasets, ensuring correct file formats, metadata structure, and non-empty outputs suitable for downstream integration.</li>
+          </ul>
+          
+          <p><strong>Publication:</strong> Co-author of the "Fast Track Report: WEHI RCP Internship Intake 15 — REDMANE Workflow Team" on Zenodo (2026).</p>
+        `,
+        demo: 'https://zenodo.org/records/19081661'
+      },
+      protinus: {
+        title: 'Protinus — Protein Structure Visualization',
+        subtitle: 'Real-time 3D visualization tool for protein structures',
+        image: './protinus.png',
+        tags: ['Python', 'Flask', 'NGL.js', 'Bioinformatics', '3D Visualization'],
+        architecture: 'Frontend (NGL.js + React)\n    ↓\nAPI (Flask REST API)\n    ↓\nBackend (Python + Biopython)\n    ↓\nDeployment (Docker)',
+        description: `
+          <p><strong>Protinus</strong> is a web-based tool for interactive 3D visualization of protein structures. Built with NGL.js for rendering and Flask for backend support, it allows users to upload, explore, and analyze protein structure files (e.g., PDB).</p>
+          
+          <p>Users can rotate, zoom, and switch between different molecular representations (cartoon, surface, ball-and-stick) directly in the browser. The Flask backend manages file handling, structure parsing, and can be extended for computational analysis.</p>
+        `,
+        demo: '#'
+      },
+      crim: {
+        title: 'AIU | CRIM — Research Publication System',
+        subtitle: 'Research publication management with analytics dashboard',
+        image: './CRIM.png',
+        tags: ['PHP', 'MySQL', 'Chart.js', 'Analytics', 'Dashboard'],
+        architecture: 'Frontend (Bootstrap + Chart.js)\n    ↓\nBackend (PHP)\n    ↓\nDatabase (MySQL)\n    ↓\nDeployment (Apache)',
+        description: `
+          <p><strong>AIU | CRIM</strong> is a dynamic platform for organizing, displaying, and managing research publications. Features include submission workflows, portfolio tracking, and real-time analytics dashboards.</p>
+          
+          <p><strong>Key Features:</strong></p>
+          <ul>
+            <li>Publication submission and approval workflow</li>
+            <li>Interactive analytics dashboard with Chart.js</li>
+            <li>User portfolio and submission tracking</li>
+            <li>Advanced search and filtering</li>
+          </ul>
+        `,
+        demo: '#'
+      },
+      prosthetic: {
+        title: 'EMG-Based Prosthetic Hand',
+        subtitle: 'Muscle-controllable robotic hand with sustainable 3D printing',
+        image: './prosthetic.jpg',
+        tags: ['Robotics', 'EMG', 'Arduino', '3D Printing', 'Signal Processing'],
+        architecture: 'EMG Sensors (Muscle Signal)\n    ↓\nSignal Processing (Filtering)\n    ↓\nArduino (Control Logic)\n    ↓\nServo Motors (Actuation)',
+        description: `
+          <p>An affordable, eco-friendly prosthetic device using <strong>3D printing</strong> with recycled plastic waste. The prosthetic hand uses <strong>EMG sensors</strong> to detect muscle signals, translating them into precise hand movements via an Arduino microcontroller.</p>
+          
+          <p><strong>Key Features:</strong></p>
+          <ul>
+            <li>EMG sensor-based muscle signal detection</li>
+            <li>3D-printed sustainable design from recycled materials</li>
+            <li>Arduino-powered real-time control system</li>
+            <li>Affordable and accessible prosthetic solution</li>
+          </ul>
+        `,
+        demo: '#'
+      }
+    };
+
+    // ============================================
+    // PROJECT VAULT — Open / Close
+    // ============================================
+    const vault = document.getElementById('projectVault');
+    const vaultContent = document.getElementById('vaultContent');
+    const closeVault = document.getElementById('closeVault');
+
+    function openVault(projectId) {
+      const data = projectData[projectId];
+      if (!data) return;
+
+      const archLines = data.architecture.split('\n').filter(line => line.trim());
+      const archHTML = archLines.map(line => {
+        if (line.includes('↓')) {
+          const parts = line.split('↓');
+          return `<span style="color: var(--text-muted);">${parts[0].trim()}</span> <span class="arrow">↓</span> <span style="color: var(--text-primary);">${parts[1] ? parts[1].trim() : ''}</span>`;
+        }
+        return `<span style="color: var(--text-primary);">${line.trim()}</span>`;
+      }).join('<br>');
+
+      vaultContent.innerHTML = `
+        <button class="close-btn" onclick="closeVaultFn()">&times;</button>
+        <h2>${data.title}</h2>
+        <p class="vault-subtitle">${data.subtitle}</p>
+        ${data.image ? `<img src="${data.image}" alt="${data.title}" class="vault-image" />` : ''}
+        <div class="vault-text">${data.description}</div>
+        <h4 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);margin:20px 0 8px;">Architecture</h4>
+        <div class="vault-arch">${archHTML}</div>
+        <div class="vault-tags">
+          ${data.tags.map(tag => `<span>${tag}</span>`).join('')}
+        </div>
+        <div class="vault-links">
+          <a href="${data.demo}"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+        </div>
+      `;
+
+      vault.style.display = 'block';
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => vault.classList.add('active'), 10);
+    }
+
+    function closeVaultFn() {
+      vault.classList.remove('active');
+      setTimeout(() => {
+        vault.style.display = 'none';
+        document.body.style.overflow = '';
+      }, 300);
+    }
+
+    document.querySelectorAll('.read-more-btn').forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const projectId = this.getAttribute('data-project');
+        openVault(projectId);
+      });
+    });
+
+    document.querySelectorAll('.project-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (e.target.closest('.read-more-btn')) return;
+        const projectId = this.getAttribute('data-project');
+        openVault(projectId);
+      });
+    });
+
+    closeVault.addEventListener('click', closeVaultFn);
+    vault.addEventListener('click', function(e) {
+      if (e.target === this) closeVaultFn();
+    });
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && vault.classList.contains('active')) closeVaultFn();
+    });
+
+    // ============================================
+    // NAVIGATION
+    // ============================================
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobileNav');
+    const overlay = document.getElementById('overlay');
+    const closeNav = document.getElementById('closeNav');
+
+    function toggleMobileNav() {
+      hamburger.classList.toggle('active');
+      mobileNav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+    }
+
+    function closeMobileNav() {
+      hamburger.classList.remove('active');
+      mobileNav.classList.remove('active');
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    hamburger.addEventListener('click', toggleMobileNav);
+    closeNav.addEventListener('click', closeMobileNav);
+    overlay.addEventListener('click', closeMobileNav);
+
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 768 && mobileNav.classList.contains('active')) {
+        closeMobileNav();
+      }
+    });
+
+    window.addEventListener('scroll', function() {
+      const navbar = document.getElementById('navbar');
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          const offset = 70;
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.pageYOffset - offset,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    const revealElements = document.querySelectorAll('.section-reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(el => revealObserver.observe(el));
+  </script>
+</body>
+</html>
