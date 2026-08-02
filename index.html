@@ -25,6 +25,7 @@
       --radius-full: 50px;
       --max-width: 1100px;
       --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --nav-height: 64px;
     }
 
     /* ============================================
@@ -39,6 +40,60 @@
     html {
       scroll-behavior: smooth;
       -webkit-font-smoothing: antialiased;
+    }
+
+    /* Mobile Snap Scrolling */
+    @media (max-width: 768px) {
+      html {
+        scroll-snap-type: y mandatory;
+        overflow-y: scroll;
+        height: 100vh;
+      }
+      
+      body {
+        overflow-y: scroll;
+        height: 100vh;
+      }
+      
+      section, header, footer {
+        scroll-snap-align: start;
+        min-height: 100vh;
+        height: auto;
+        display: flex;
+        align-items: center;
+      }
+      
+      /* Adjust header to not be cut off */
+      header {
+        min-height: 100vh;
+        padding-top: 80px;
+      }
+      
+      /* Make sections full viewport height */
+      .about-section,
+      .tech-section,
+      .projects-section,
+      .exp-section,
+      .publications-section,
+      footer {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 40px 0;
+      }
+      
+      /* Ensure content doesn't overflow */
+      .container {
+        width: 100%;
+        max-height: 90vh;
+        overflow-y: auto;
+        padding: 20px;
+      }
+      
+      /* Hide scrollbar but keep functionality */
+      .container::-webkit-scrollbar {
+        width: 0px;
+      }
     }
 
     body {
@@ -243,7 +298,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 64px;
+      height: var(--nav-height);
     }
 
     .logo {
@@ -646,6 +701,85 @@
       margin-bottom: 12px;
       color: var(--text-muted);
       opacity: 0.3;
+    }
+
+    /* ============================================
+       TECH STACK - NEUMORPHISM
+       ============================================ */
+    .tech-section {
+      padding: 72px 0;
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+
+    .tech-category {
+      padding: 24px 28px;
+      border-radius: var(--radius);
+      background: var(--bg);
+      box-shadow: 
+        8px 8px 20px var(--shadow-dark),
+        -8px -8px 20px var(--shadow-light);
+      transition: var(--transition);
+    }
+
+    .tech-category:hover {
+      transform: translateY(-4px);
+      box-shadow: 
+        12px 12px 28px var(--shadow-dark),
+        -12px -12px 28px var(--shadow-light);
+    }
+
+    .tech-category h3 {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tech-category h3 i {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    .tech-items {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tech-tag {
+      padding: 4px 16px;
+      border-radius: var(--radius-full);
+      background: var(--bg);
+      box-shadow: 
+        inset 2px 2px 5px var(--shadow-dark),
+        inset -2px -2px 5px var(--shadow-light);
+      font-size: 0.7rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: var(--transition);
+      cursor: default;
+      letter-spacing: 0.2px;
+    }
+
+    .tech-tag:hover {
+      color: var(--text-primary);
+      transform: translateY(-2px);
+      box-shadow: 
+        inset 3px 3px 6px var(--shadow-dark),
+        inset -3px -3px 6px var(--shadow-light);
     }
 
     /* ============================================
@@ -1299,6 +1433,10 @@
         width: 140px;
         height: 140px;
       }
+
+      .tech-grid {
+        grid-template-columns: 1fr 1fr;
+      }
     }
 
     @media (max-width: 480px) {
@@ -1329,6 +1467,9 @@
         width: 120px;
         height: 120px;
       }
+      .tech-grid {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -1347,6 +1488,7 @@
       <a href="#" class="logo">Kaung<span>Myat</span></a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
+        <li><a href="#tech">Tech Stack</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
         <li><a href="#publications">Publications</a></li>
@@ -1366,6 +1508,7 @@
   <div class="mobile-nav" id="mobileNav">
     <button class="close-btn" id="closeNav">&times;</button>
     <a href="#about" onclick="closeMobileNav()">About</a>
+    <a href="#tech" onclick="closeMobileNav()">Tech Stack</a>
     <a href="#projects" onclick="closeMobileNav()">Projects</a>
     <a href="#experience" onclick="closeMobileNav()">Experience</a>
     <a href="#publications" onclick="closeMobileNav()">Publications</a>
@@ -1441,7 +1584,7 @@
           </p>
           <div class="about-stats">
             <div class="about-stat">
-              <div class="number">3+</div>
+              <div class="number">4</div>
               <div class="label">Projects</div>
             </div>
             <div class="about-stat">
@@ -1462,6 +1605,68 @@
                 <p>Building the future,<br>one line at a time.</p>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================
+  TECH STACK - NEUMORPHISM
+  ============================================ -->
+  <section class="tech-section" id="tech">
+    <div class="container">
+      <div class="section-header section-reveal">
+        <span class="section-tag">Tech Stack</span>
+        <h2 class="section-title">My Arsenal</h2>
+        <p class="section-subtitle">Technologies I use to build scalable solutions.</p>
+      </div>
+      
+      <div class="tech-grid">
+        <div class="tech-category section-reveal">
+          <h3><i class="fas fa-code"></i> Programming</h3>
+          <div class="tech-items">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">C</span>
+            <span class="tech-tag">Bash</span>
+            <span class="tech-tag">HTML/CSS</span>
+          </div>
+        </div>
+
+        <div class="tech-category section-reveal">
+          <h3><i class="fas fa-database"></i> Data & ML</h3>
+          <div class="tech-items">
+            <span class="tech-tag">Nextflow</span>
+            <span class="tech-tag">Pandas</span>
+            <span class="tech-tag">NumPy</span>
+            <span class="tech-tag">Scikit-learn</span>
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">Biopython</span>
+          </div>
+        </div>
+
+        <div class="tech-category section-reveal">
+          <h3><i class="fas fa-cloud"></i> DevOps & Cloud</h3>
+          <div class="tech-items">
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Linux</span>
+            <span class="tech-tag">Git</span>
+            <span class="tech-tag">Apache</span>
+            <span class="tech-tag">NGINX</span>
+          </div>
+        </div>
+
+        <div class="tech-category section-reveal">
+          <h3><i class="fas fa-tools"></i> Tools & Frameworks</h3>
+          <div class="tech-items">
+            <span class="tech-tag">Flask</span>
+            <span class="tech-tag">SAMtools</span>
+            <span class="tech-tag">BCFtools</span>
+            <span class="tech-tag">Chart.js</span>
+            <span class="tech-tag">Arduino</span>
+            <span class="tech-tag">Three.js</span>
           </div>
         </div>
       </div>
