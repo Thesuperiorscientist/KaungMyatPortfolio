@@ -61,13 +61,11 @@
         align-items: center;
       }
       
-    
       header {
         min-height: 100vh;
         padding-top: 80px;
       }
       
-      /* Make sections full viewport height */
       .about-section,
       .tech-section,
       .projects-section,
@@ -80,7 +78,6 @@
         padding: 40px 0;
       }
       
-      /* Ensure content doesn't overflow */
       .container {
         width: 100%;
         max-height: 90vh;
@@ -88,7 +85,6 @@
         padding: 20px;
       }
       
-      /* Hide scrollbar but keep functionality */
       .container::-webkit-scrollbar {
         width: 0px;
       }
@@ -1154,6 +1150,7 @@
         -20px -20px 60px var(--shadow-light);
       transform: translateY(30px) scale(0.98);
       transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      position: relative;
     }
 
     #projectVault.active .vault-content {
@@ -1161,7 +1158,9 @@
     }
 
     .vault-content .close-btn {
-      float: right;
+      position: absolute;
+      top: 20px;
+      right: 24px;
       background: none;
       border: none;
       font-size: 1.4rem;
@@ -1169,6 +1168,8 @@
       cursor: pointer;
       transition: var(--transition);
       padding: 4px;
+      line-height: 1;
+      z-index: 2;
     }
 
     .vault-content .close-btn:hover {
@@ -1181,6 +1182,7 @@
       font-weight: 700;
       margin-bottom: 4px;
       color: var(--text-primary);
+      padding-right: 40px;
     }
 
     .vault-content .vault-subtitle {
@@ -1193,6 +1195,7 @@
       width: 100%;
       border-radius: var(--radius-sm);
       margin: 16px 0 24px;
+      display: block;
     }
 
     .vault-content .vault-text {
@@ -1202,6 +1205,10 @@
       margin-bottom: 16px;
     }
 
+    .vault-content .vault-text p {
+      margin-bottom: 12px;
+    }
+
     .vault-content .vault-text strong {
       color: var(--text-primary);
     }
@@ -1209,7 +1216,7 @@
     .vault-content .vault-text ul {
       list-style: none;
       padding: 0;
-      margin: 8px 0;
+      margin: 8px 0 12px;
     }
 
     .vault-content .vault-text ul li {
@@ -1224,6 +1231,15 @@
       position: absolute;
       left: 0;
       color: var(--text-muted);
+    }
+
+    .vault-content .vault-section-title {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+      margin: 24px 0 10px;
     }
 
     .vault-content .vault-arch {
@@ -1272,6 +1288,7 @@
       display: flex;
       gap: 16px;
       margin-top: 20px;
+      flex-wrap: wrap;
     }
 
     .vault-content .vault-links a {
@@ -1713,13 +1730,14 @@
         <div class="project-card section-reveal" data-project="plasycle">
           <div class="project-tags">
             <span>TensorFlow.js</span>
-            <span>Image Classification</span>
-            
+            <span>AI</span>
+            <span>Sustainability</span>
+            <span>Circular Economy</span>
           </div>
           <h3>Plasycle</h3>
           <p class="project-desc">Turning plastic waste into 3D-printed STEM learning aids for rural schools.</p>
-          <button class="read-more-btn" data-project="protinus">
-            <i class="fas fa-chevron-right"></i> Live Demo
+          <button class="read-more-btn" data-project="plasycle">
+            <i class="fas fa-chevron-right"></i> Case Study
           </button>
         </div>
 
@@ -1734,7 +1752,6 @@
           <p class="project-desc">Research publication management system with analytics dashboard.</p>
           <button class="read-more-btn" data-project="crim">
             <i class="fas fa-chevron-right"></i> Case Study
-            
           </button>
         </div>
 
@@ -2012,14 +2029,37 @@
       },
 
       plasycle: {
-        title: 'Plasycle',
-        subtitle: 'Plastic waste → 3D-printed STEM aids for rural schools.',
-        image: './protinus.png',
-        tags: ['Image Classification', 'TensorFlow.js'],
-      
+        title: 'Plasycle — Plastic Waste into STEM Education',
+        subtitle: 'Turning plastic waste into 3D-printed STEM learning aids for rural schools.',
+        image: './plasycle.png',
+        tags: ['TensorFlow.js', 'AI', 'Image Classification', 'Circular Economy', 'Sustainability', '3D Printing'],
+        architecture: 'Collect (B40 families)\n    ↓\nScan (AI Plastic Identifier)\n    ↓\nConvert (Shred → Melt → Extrude)\n    ↓\nPrint (STEM Learning Aids)\n    ↓\nDeliver (Rural Schools)\n    ↓\nEarn (Families get paid)',
         description: `
-          <p><strong>Plasycle</strong> converts plastic waste into 3D printer filament and prints STEM learning aids for underfunded rural schools.</p>
-        
+          <p><strong>Plasycle</strong> is a circular-economy concept that turns plastic waste into 3D printer filament, then into STEM learning aids for rural schools that can't afford them. It tackles two problems at once: Malaysia's plastic waste crisis and the lack of science equipment in underfunded schools.</p>
+
+          <p><strong>The Problem:</strong></p>
+          <ul>
+            <li>Malaysia generates over <strong>1 million tonnes of plastic waste</strong> yearly</li>
+            <li>Rural schools lack basic science equipment — microscopes, lab tools, learning aids</li>
+            <li>Most plastic ends up in landfills or oceans instead of being reused</li>
+          </ul>
+
+          <p><strong>The Solution — A Closed Loop:</strong></p>
+          <ul>
+            <li><strong>AI Plastic Scanner:</strong> Upload a photo; the AI identifies plastic type (PET, PE, PC, PP, PS, or Other)</li>
+            <li><strong>Filament Conversion:</strong> Plastic is shredded, melted, and extruded into 3D printer filament</li>
+            <li><strong>STEM Aid Printing:</strong> Filament is 3D-printed into microscopes, lab tools, and learning aids</li>
+            <li><strong>Rural School Delivery:</strong> Aids are donated to schools that can't afford them</li>
+          </ul>
+
+          <p><strong>Impact Model — The Three Zeros:</strong></p>
+          <ul>
+            <li><strong>Zero Poverty:</strong> B40 families earn income from plastic collection</li>
+            <li><strong>Zero Unemployment:</strong> Local jobs at every stage — collectors, technicians, operators, drivers</li>
+            <li><strong>Zero Carbon:</strong> Every kg of plastic converted saves ~1.5kg of CO₂</li>
+          </ul>
+
+          <p><strong>My Role:</strong> Designed and built the web platform, including the AI plastic scanner demo, the loop visualization, and the impact storytelling. This project sits at the intersection of <strong>AI, sustainability, and social impact</strong> — three areas I care deeply about.</p>
         `,
         demo: 'https://plasycle.netlify.app'
       },
@@ -2085,18 +2125,17 @@
       }).join('<br>');
 
       vaultContent.innerHTML = `
-        <button class="close-btn" onclick="closeVaultFn()">&times;</button>
         <h2>${data.title}</h2>
         <p class="vault-subtitle">${data.subtitle}</p>
-        ${data.image ? `<img src="${data.image}" alt="${data.title}" class="vault-image" />` : ''}
+        ${data.image ? `<img src="${data.image}" alt="${data.title}" class="vault-image" onerror="this.style.display='none'" />` : ''}
         <div class="vault-text">${data.description}</div>
-        <h4 style="font-size:0.75rem;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted);margin:20px 0 8px;">Architecture</h4>
+        <h4 class="vault-section-title">Architecture</h4>
         <div class="vault-arch">${archHTML}</div>
         <div class="vault-tags">
           ${data.tags.map(tag => `<span>${tag}</span>`).join('')}
         </div>
         <div class="vault-links">
-          <a href="${data.demo}"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          <a href="${data.demo}" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a>
         </div>
       `;
 
