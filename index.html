@@ -330,7 +330,7 @@ fit();addEventListener('resize',fit);
 let mx=0,my=0,yaw=0,pit=0,vis=true;const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
 addEventListener('mousemove',e=>{mx=e.clientX/innerWidth*2-1;my=e.clientY/innerHeight*2-1});
 new IntersectionObserver(e=>vis=e[0].isIntersecting).observe(box);
-tag.textContent='468 pts · beard.v1';
+tag.textContent='';
 const bk=new Uint8Array(1);
 (function frame(ms){requestAnimationFrame(frame);if(!vis)return;const t=ms/1000;
  const ty=(rm?.25:Math.sin(t*.6)*.5)+mx*.5,tp=my*.2;yaw+=(ty-yaw)*.08;pit+=(tp-pit)*.08;
